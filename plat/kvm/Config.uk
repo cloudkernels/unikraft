@@ -115,6 +115,14 @@ config VIRTIO_BLK
 	help
 		Virtual block driver.
 
+config VIRTIO_ACCEL
+	bool "Virtio Accel Device"
+	default n
+	select VIRTIO_BUS
+	select LIBUKGLIST
+	help
+		Vaccel driver.
+
 config VIRTIO_9P
        bool "Virtio 9P device"
        default y if LIBUK9P
