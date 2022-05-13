@@ -325,7 +325,7 @@ static int pipe_read(struct vnode *vnode,
 			read_bytes = pipe_buf_read(pipe_buf, iovec, off);
 			if (read_bytes == 0) {
 				/* No data */
-				if (nonblocking) {
+				if (nonblocking || !pipe_file->w_refcount) {
 					data_available = false;
 					break;
 
