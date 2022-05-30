@@ -145,7 +145,11 @@ static void main_thread_func(void *arg)
 	}
 	uk_pr_info("])\n");
 
+#if CONFIG_LIBWATCHDOG
+	ret = fwatchdog(tma->argc, tma->argv);
+#else
 	ret = main(tma->argc, tma->argv);
+#endif
 	uk_pr_info("main returned %d, halting system\n", ret);
 	ret = (ret != 0) ? UKPLAT_CRASH : UKPLAT_HALT;
 
